@@ -2,9 +2,17 @@ import Image from 'next/image';
 
 const HeroSection = () => (
   <section id="home" className="scroll-mt-24 lg:relative">
-    <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left">
+    <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-24 lg:text-left">
       <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
-        <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+        <Image
+          className="inline-block h-40 w-40 rounded-full"
+          width={160}
+          height={160}
+          src="/img/hero/simon.jpg"
+          alt="Simon profile picture"
+          priority
+        />
+        <h1 className="mt-2 text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
           <div className="text-xl text-gray-500">Hi! 👋 My name is</div>
           <div className="text-gray-900 dark:text-white">Simon Arvaux</div>
           <div className="text-3xl text-purple-600">Full Stack Web3 Developer</div>

@@ -5,6 +5,7 @@ import ServicesSection from './services-section';
 import PortfolioSection from './portfolio-section';
 import TestimonialsSection from './testimonials-section';
 import ContactSection from './contact-section';
+import Footer from './footer';
 import Notification from './notification';
 
 const Index = () => (
@@ -20,6 +21,9 @@ const Index = () => (
       <ContactSection />
       <Notification />
     </main>
+    <footer>
+      <Footer />
+    </footer>
   </ContextProvider>
 );
 

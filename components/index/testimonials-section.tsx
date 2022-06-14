@@ -20,7 +20,12 @@ const Testimonial = ({
   position: string;
 }) => (
   <>
-    <div className="flex items-center">
+    <a
+      href={websiteUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center text-gray-200 hover:text-white"
+    >
       <div className="inline-flex flex-shrink-0 rounded-md border-2 border-white">
         <Image
           className="h-32 w-32 rounded"
@@ -30,15 +35,8 @@ const Testimonial = ({
           alt={`${companyName} logo`}
         />
       </div>
-      <a
-        href={websiteUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="ml-4 text-xl font-medium text-gray-200 hover:text-white"
-      >
-        {companyName}
-      </a>
-    </div>
+      <span className="ml-4 text-xl font-medium">{companyName}</span>
+    </a>
     <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
       <div className="relative text-lg font-medium text-white md:flex-grow">
         <svg
@@ -102,7 +100,7 @@ const TestimonialsSection = () => (
             companyName="Foxintelligence"
             websiteUrl="https://www.foxintelligence.io/"
             testimonial="We built an early prototype of what would become Foxintelligence back in
-                2016 together, it was very hacky and a lot of fun!"
+              2016 together, it was very hacky and a lot of fun!"
             pictureUrl="/img/testimonials/edouard.jpg"
             fullName="Edouard Nattée"
             linkedInUrl="https://www.linkedin.com/in/edouardnattee/"
@@ -114,8 +112,8 @@ const TestimonialsSection = () => (
             logoUrl="/img/testimonials/slite.png"
             companyName="Slite"
             websiteUrl="https://slite.com/"
-            testimonial="Simon gave me a hand on tech when I was coding the first iterations of
-                the Slite MVP."
+            testimonial="Simon gave me a hand on tech when I was coding the first iterations of the
+              Slite MVP."
             pictureUrl="/img/testimonials/christophe.jpg"
             fullName="Christophe Pasquier"
             linkedInUrl="https://www.linkedin.com/in/christophe-pasquier-93875956/"
@@ -128,7 +126,7 @@ const TestimonialsSection = () => (
             companyName="Hivy"
             websiteUrl="https://www.efounders.com/companies/hivy"
             testimonial="Simon joined the Hivy team to help us with the YC W17 batch sprint. We
-                shared great memories working (and co-living!) together in Silicon Valley."
+              shared great memories working (and co-living!) together in Silicon Valley."
             pictureUrl="/img/testimonials/pauline.jpg"
             fullName="Pauline Tordeur"
             linkedInUrl="https://www.linkedin.com/in/pauline-tordeur/"
@@ -141,8 +139,8 @@ const TestimonialsSection = () => (
             companyName="eFounders"
             websiteUrl="https://www.efounders.com/"
             testimonial="I worked with Simon for 6 years on multiple versions of the eFounders
-                website and it has always been a pleasure. Fun fact: we both left to fully embark on
-                the Web3 adventure!"
+              website and it has always been a pleasure. Fun fact: we both left to fully embark on
+              the Web3 adventure!"
             pictureUrl="/img/testimonials/didier.jpg"
             fullName="Didier Forest"
             linkedInUrl="https://www.linkedin.com/in/didier-forest-6194509/"

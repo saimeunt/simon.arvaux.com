@@ -249,25 +249,28 @@ const ContactSection = () => (
                   const firstName = document.querySelector('#first-name') as HTMLInputElement;
                   firstName.focus();
                 }}
-                className="cursor-pointer"
+                className="cursor-pointer text-gray-200 hover:text-white"
               >
-                <dd className="flex text-base text-purple-50">
-                  <MailIcon className="h-6 w-6 flex-shrink-0 text-purple-200" aria-hidden="true" />
+                <dd className="flex text-base">
+                  <MailIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                   <span className="ml-3">Contact me</span>
                 </dd>
               </a>
               <dt>
                 <span className="sr-only">LinkedIn</span>
               </dt>
-              <a href="https://www.linkedin.com/in/simon-arvaux/">
-                <dd className="flex text-base text-purple-50">
+              <a
+                href="https://www.linkedin.com/in/simon-arvaux/"
+                className="text-gray-200 hover:text-white"
+              >
+                <dd className="flex text-base">
                   <svg
                     width={24}
                     height={24}
                     viewBox="0 0 448 512"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 flex-shrink-0 text-purple-200"
+                    className="h-6 w-6 flex-shrink-0"
                     aria-hidden="true"
                   >
                     <path
