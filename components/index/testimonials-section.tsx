@@ -112,8 +112,9 @@ const TestimonialsSection = () => (
             logoUrl="/img/testimonials/slite.png"
             companyName="Slite"
             websiteUrl="https://slite.com/"
-            testimonial="Simon gave me a hand on tech when I was coding the first iterations of the
-              Slite MVP."
+            testimonial="In the first months of Slite, when I was alone in a basement coding Slite's
+              first version, Simon was a terrific peer to untangle all the complexity of building a
+              collaborative doc editor."
             pictureUrl="/img/testimonials/christophe.jpg"
             fullName="Christophe Pasquier"
             linkedInUrl="https://www.linkedin.com/in/christophe-pasquier-93875956/"
@@ -151,109 +152,5 @@ const TestimonialsSection = () => (
     </div>
   </section>
 );
-
-/* const people = [
-  {
-    name: 'Edouard Nattée',
-    imageUrl: '/img/edouard.jpg',
-    logoUrl: '/img/foxintel.png',
-    company: 'Foxintelligence',
-    role: 'Founder & CEO',
-    website: 'https://www.foxintelligence.io/',
-    bio: `We built an early prototype of what would become Foxintelligence back in 2016 together, it
-      was very hacky and a lot of fun!`,
-  },
-  {
-    name: 'Edouard Nattée',
-    imageUrl: '/img/edouard.jpg',
-    logoUrl: '/img/foxintel.png',
-    company: 'Foxintelligence',
-    role: 'Founder & CEO',
-    website: 'https://www.foxintelligence.io/',
-    bio: `We built an early prototype of what would become Foxintelligence back in 2016 together, it
-      was very hacky and a lot of fun!`,
-  },
-  {
-    name: 'Edouard Nattée',
-    imageUrl: '/img/edouard.jpg',
-    logoUrl: '/img/foxintel.png',
-    company: 'Foxintelligence',
-    role: 'Founder & CEO',
-    website: 'https://www.foxintelligence.io/',
-    bio: `We built an early prototype of what would become Foxintelligence back in 2016 together, it
-      was very hacky and a lot of fun!`,
-  },
-  {
-    name: 'Edouard Nattée',
-    imageUrl: '/img/edouard.jpg',
-    logoUrl: '/img/foxintel.png',
-    company: 'Foxintelligence',
-    role: 'Founder & CEO',
-    website: 'https://www.foxintelligence.io/',
-    bio: `We built an early prototype of what would become Foxintelligence back in 2016 together, it
-      was very hacky and a lot of fun!`,
-  },
-];
-
-const Testimonials = () => (
-  <div className="bg-purple-700">
-    <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
-      <div className="space-y-12">
-        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          People I worked with
-        </h2>
-        <ul
-          role="list"
-          className="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0"
-        >
-          {people.map((person, index) => (
-            <li key={person.name}>
-              <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
-                <div className="aspect-w-3 aspect-h-2 h-0 sm:aspect-w-3 sm:aspect-h-4">
-                  <Image
-                    className="rounded-lg object-cover shadow-lg"
-                    layout="fill"
-                    src={person.imageUrl}
-                    alt=""
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-4">
-                      <Image
-                        className="h-48 w-48 rounded-md"
-                        src={person.logoUrl}
-                        width={48}
-                        height={48}
-                        alt={`${person.company} logo`}
-                      />
-                      <div className="space-y-1 text-lg font-medium leading-6">
-                        <h3 className="text-white">{person.name}</h3>
-                        <p className="text-purple-100">
-                          {person.role}{' '}
-                          <a
-                            href={person.website}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-purple-200 hover:text-purple-100"
-                          >
-                            @{person.company}
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-lg">
-                      <p className="text-purple-200">{person.bio}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </div>
-); */
 
 export default TestimonialsSection;

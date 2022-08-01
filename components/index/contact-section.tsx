@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { MailIcon } from '@heroicons/react/outline';
 import { FormApi } from 'final-form';
 import { Form as FinalForm, Field } from 'react-final-form';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import useContext from './context/hook';
 
@@ -17,8 +18,15 @@ type FormValues = {
 const ContactForm = () => {
   const { openNotification } = useContext();
   const [loading, setLoading] = useState(false);
-  const onSubmit = async (formValues: FormValues, form: FormApi<FormValues, FormValues>) => {
-    setLoading(true);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const formRef = useRef<FormApi<FormValues, Partial<FormValues>> | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onSubmit = async (formValues: FormValues) => {
+    if (!recaptchaRef.current) {
+      return;
+    }
+    recaptchaRef.current.execute();
+    /* setLoading(true);
     const response = await fetch('/api/send-message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,6 +34,21 @@ const ContactForm = () => {
     });
     setLoading(false);
     form.reset();
+    openNotification(response.status === 201); */
+  };
+  const onReCAPTCHAChange = async (token: string | null) => {
+    if (!token || !recaptchaRef.current || !formRef.current) {
+      return;
+    }
+    setLoading(true);
+    const response = await fetch('/api/send-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...formRef.current.getState().values, captcha: token }),
+    });
+    setLoading(false);
+    recaptchaRef.current.reset();
+    formRef.current.reset();
     openNotification(response.status === 201);
   };
   return (
@@ -39,188 +62,198 @@ const ContactForm = () => {
         message: '',
       }}
       onSubmit={onSubmit}
-      render={({ handleSubmit, values }) => (
-        <form
-          className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-          onSubmit={handleSubmit}
-        >
-          <div>
-            <label
-              htmlFor="first-name"
-              className="block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              First name
-            </label>
-            <div className="mt-1">
-              <Field
-                name="firstName"
-                render={({ input }) => (
-                  <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    required
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between">
+      render={({ handleSubmit, values, form }) => {
+        formRef.current = form;
+        return (
+          <form
+            className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+            onSubmit={handleSubmit}
+          >
+            <div>
               <label
-                htmlFor="last-name"
+                htmlFor="first-name"
                 className="block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Last name
+                First name
               </label>
-              <span id="last-name-optional" className="text-sm text-gray-500">
-                Optional
-              </span>
+              <div className="mt-1">
+                <Field
+                  name="firstName"
+                  render={({ input }) => (
+                    <input
+                      type="text"
+                      name="first-name"
+                      id="first-name"
+                      autoComplete="given-name"
+                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      required
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
             </div>
-            <div className="mt-1">
-              <Field
-                name="lastName"
-                render={({ input }) => (
-                  <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    aria-describedby="last-name-optional"
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
-              />
+            <div>
+              <div className="flex justify-between">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Last name
+                </label>
+                <span id="last-name-optional" className="text-sm text-gray-500">
+                  Optional
+                </span>
+              </div>
+              <div className="mt-1">
+                <Field
+                  name="lastName"
+                  render={({ input }) => (
+                    <input
+                      type="text"
+                      name="last-name"
+                      id="last-name"
+                      autoComplete="family-name"
+                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      aria-describedby="last-name-optional"
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
             </div>
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Email
-            </label>
-            <div className="mt-1">
-              <Field
-                name="email"
-                render={({ input }) => (
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    required
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between">
+            <div>
               <label
-                htmlFor="phone"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Phone
+                Email
               </label>
-              <span id="phone-optional" className="text-sm text-gray-500">
-                Optional
-              </span>
+              <div className="mt-1">
+                <Field
+                  name="email"
+                  render={({ input }) => (
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      required
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
             </div>
-            <div className="mt-1">
-              <Field
-                name="phone"
-                render={({ input }) => (
-                  <input
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    autoComplete="tel"
-                    className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    aria-describedby="phone-optional"
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
-              />
+            <div>
+              <div className="flex justify-between">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Phone
+                </label>
+                <span id="phone-optional" className="text-sm text-gray-500">
+                  Optional
+                </span>
+              </div>
+              <div className="mt-1">
+                <Field
+                  name="phone"
+                  render={({ input }) => (
+                    <input
+                      type="text"
+                      name="phone"
+                      id="phone"
+                      autoComplete="tel"
+                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      aria-describedby="phone-optional"
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
             </div>
-          </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="subject"
-              className="block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Subject
-            </label>
-            <div className="mt-1">
-              <Field
-                name="subject"
-                render={({ input }) => (
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    required
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
-            <div className="flex justify-between">
+            <div className="sm:col-span-2">
               <label
-                htmlFor="message"
+                htmlFor="subject"
                 className="block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Message
+                Subject
               </label>
-              <span id="message-max" className="text-sm text-gray-500">
-                {values.message
-                  ? `${500 - values.message.length} characters remaining`
-                  : 'Max. 500 characters'}
-              </span>
+              <div className="mt-1">
+                <Field
+                  name="subject"
+                  render={({ input }) => (
+                    <input
+                      type="text"
+                      name="subject"
+                      id="subject"
+                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      required
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
             </div>
-            <div className="mt-1">
-              <Field
-                name="message"
-                render={({ input }) => (
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="block w-full rounded-md border border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
-                    aria-describedby="message-max"
-                    maxLength={500}
-                    required
-                    value={input.value}
-                    onChange={input.onChange}
-                  />
-                )}
+            <div className="sm:col-span-2">
+              <div className="flex justify-between">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Message
+                </label>
+                <span id="message-max" className="text-sm text-gray-500">
+                  {values.message
+                    ? `${500 - values.message.length} characters remaining`
+                    : 'Max. 500 characters'}
+                </span>
+              </div>
+              <div className="mt-1">
+                <Field
+                  name="message"
+                  render={({ input }) => (
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className="block w-full rounded-md border border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      aria-describedby="message-max"
+                      maxLength={500}
+                      required
+                      value={input.value}
+                      onChange={input.onChange}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className="sm:col-span-2 sm:flex sm:justify-end">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                // badge="inline"
+                size="invisible"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={onReCAPTCHAChange}
               />
+              <button
+                type="submit"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+              >
+                {loading ? 'Sending…' : 'Submit'}
+              </button>
             </div>
-          </div>
-          <div className="sm:col-span-2 sm:flex sm:justify-end">
-            <button
-              type="submit"
-              className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
-            >
-              {loading ? 'Sending…' : 'Submit'}
-            </button>
-          </div>
-        </form>
-      )}
+          </form>
+        );
+      }}
     />
   );
 };

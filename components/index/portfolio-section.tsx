@@ -222,8 +222,8 @@ const PortfolioSection = () => {
             <p className="mt-8 text-base text-gray-500">
               The investor facing application displays the user portfolio along with the current
               investment opportunities he might be interested in. Built as a server-side rendered
-              React application to allow fast loading on mobile and let users register their
-              interest quickly.
+              responsive React application to allow fast loading on mobile and let users register
+              their interest quickly.
             </p>
           </div>
           <div>

@@ -7,21 +7,38 @@ import sendEmail from '../../lib/mailjet';
 
 const sendMessage = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
-    const { firstName, lastName, email, phone, subject, message } = req.body as {
+    const { firstName, lastName, email, phone, subject, message, captcha } = req.body as {
       firstName: string;
       lastName: string;
       email: string;
       phone: string;
       subject: string;
       message: string;
+      captcha: string;
     };
+    const apiUrl = 'https://www.google.com/recaptcha/api/siteverify';
+    const response = await fetch(
+      `${apiUrl}?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+        },
+        method: 'POST',
+      },
+    );
+    const responseJson = await response.json();
+    const { success } = responseJson as { success: boolean };
+    if (!success) {
+      res.status(500).end();
+      return;
+    }
     const { html: htmlPart } = mjml2html(`
       <mjml>
         <mj-body>
           <mj-section>
             <mj-column>
               <mj-text font-size="20px">
-                ${message.replace(/\n/g, '<br />')}
+                ${message.replaceAll('\n', '<br />')}
               </mj-text>
             </mj-column>
           </mj-section>
