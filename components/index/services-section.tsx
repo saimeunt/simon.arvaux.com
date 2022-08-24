@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 const ServicesSection = () => (
   <section id="services" className="scroll-mt-24 bg-purple-800">
@@ -28,7 +28,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={48}
                 height={48}
                 src="/img/services/typescript.svg"
@@ -39,7 +39,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={54}
                 height={48}
                 src="/img/services/react.svg"
@@ -50,7 +50,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={80}
                 height={48}
                 src="/img/services/nextjs.svg"
@@ -61,7 +61,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://graphql.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={48}
                 height={48}
                 src="/img/services/graphql.svg"
@@ -72,7 +72,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={47}
                 height={48}
                 src="/img/services/postgresql.svg"
@@ -83,7 +83,7 @@ const ServicesSection = () => (
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <a href="https://soliditylang.org/" target="_blank" rel="noreferrer">
               <Image
-                className="max-h-12"
+                // className="max-h-12"
                 width={31}
                 height={48}
                 src="/img/services/solidity.svg"

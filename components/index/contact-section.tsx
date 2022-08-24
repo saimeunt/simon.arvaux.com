@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { MailIcon } from '@heroicons/react/outline';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { FormApi } from 'final-form';
 import { Form as FinalForm, Field } from 'react-final-form';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -285,7 +285,7 @@ const ContactSection = () => (
                 className="cursor-pointer text-gray-200 hover:text-white"
               >
                 <dd className="flex text-base">
-                  <MailIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                  <EnvelopeIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                   <span className="ml-3">Contact me</span>
                 </dd>
               </a>

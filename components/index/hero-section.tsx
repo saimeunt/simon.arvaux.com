@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 const HeroSection = () => (
   <section id="home" className="scroll-mt-24 lg:relative">
     <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-24 lg:text-left">
       <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
         <Image
-          className="inline-block h-40 w-40 rounded-full"
+          className="inline-block rounded-full"
           width={160}
           height={160}
           src="/img/hero/simon.jpg"
@@ -62,10 +62,11 @@ const HeroSection = () => (
     <div className="relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2">
       <Image
         className="absolute inset-0 h-full w-full object-cover object-[center_25%]"
-        layout="fill"
         src="/img/hero/hero.jpg"
         alt="Simon working at the office"
         priority
+        sizes="100vw"
+        fill
       />
     </div>
   </section>

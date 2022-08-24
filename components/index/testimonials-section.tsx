@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 const Testimonial = ({
   logoUrl,
@@ -28,10 +28,10 @@ const Testimonial = ({
     >
       <div className="inline-flex flex-shrink-0 rounded-md border-2 border-white">
         <Image
-          className="h-32 w-32 rounded"
-          src={logoUrl}
+          className="rounded"
           width={32}
           height={32}
+          src={logoUrl}
           alt={`${companyName} logo`}
         />
       </div>
@@ -53,7 +53,7 @@ const Testimonial = ({
         <div className="flex items-center">
           <div className="inline-flex flex-shrink-0 rounded-full border-2 border-white">
             <Image
-              className="h-64 w-64 rounded-full"
+              className="rounded-full"
               width={64}
               height={64}
               src={pictureUrl}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Lightbox from 'react-image-lightbox';
 
 const screenshots = [
@@ -70,11 +70,11 @@ const PortfolioSection = () => {
               }}
             >
               <Image
+                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
                 src={screenshots[0].source}
                 alt={screenshots[0].title}
                 width={1280}
                 height={720}
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
               />
             </div>
             <p className="mt-8 text-base text-gray-500">
@@ -109,11 +109,11 @@ const PortfolioSection = () => {
               }}
             >
               <Image
+                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
                 src={screenshots[1].source}
                 alt={screenshots[1].title}
                 width={1280}
                 height={720}
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
               />
             </div>
             <p className="mt-8 text-base text-gray-500">
@@ -212,11 +212,11 @@ const PortfolioSection = () => {
               }}
             >
               <Image
+                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
                 src={screenshots[2].source}
                 alt={screenshots[2].title}
                 width={1280}
                 height={720}
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
               />
             </div>
             <p className="mt-8 text-base text-gray-500">
@@ -235,11 +235,11 @@ const PortfolioSection = () => {
               }}
             >
               <Image
+                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
                 src={screenshots[3].source}
                 alt={screenshots[3].title}
                 width={1280}
                 height={720}
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
               />
             </div>
             <p className="mt-8 text-base text-gray-500">

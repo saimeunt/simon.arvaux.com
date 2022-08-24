@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 const MetaImage = () => (
   <div className="relative h-[628px] w-[1200px]">
@@ -6,8 +6,9 @@ const MetaImage = () => (
       <Image
         className="h-full w-full object-cover object-center"
         src="/img/meta-image-background.jpg"
-        layout="fill"
         alt="Meta image"
+        sizes="100vw"
+        fill
       />
     </div>
     <div aria-hidden="true" className="absolute inset-0 bg-neutral-900 opacity-50" />
