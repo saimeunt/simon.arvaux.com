@@ -1,3 +1,4 @@
+'use client';
 import { useState, useRef } from 'react';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { FormApi } from 'final-form';
@@ -235,6 +236,27 @@ const ContactForm = () => {
                   )}
                 />
               </div>
+              <p className="mt-2 text-sm text-gray-500">
+                This site is protected by reCAPTCHA and the Google{' '}
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-purple-700 hover:text-purple-500"
+                >
+                  Privacy Policy
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://policies.google.com/terms"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-purple-700 hover:text-purple-500"
+                >
+                  Terms of Service
+                </a>{' '}
+                apply.
+              </p>
             </div>
             <div className="sm:col-span-2 sm:flex sm:justify-end">
               <ReCAPTCHA

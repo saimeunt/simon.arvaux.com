@@ -1,14 +1,10 @@
-import Head from 'next/head';
-
-import Index from '../components/index';
-
-const title = 'Simon Arvaux portfolio';
-const description = 'Full Stack Web3 Developer';
-const metaImageUrl = 'https://simon.arvaux.com/img/meta-image.jpg';
-
-const IndexPage = () => (
-  <div className="bg-white dark:bg-neutral-900">
-    <Head>
+const Head = () => {
+  const title = 'Simon Arvaux portfolio';
+  const description = 'Full Stack Web3 Developer';
+  const metaImageUrl = 'https://simon.arvaux.com/img/meta-image.jpg';
+  // const metaImageUrl = 'https://simon.arvaux.com/api/meta-image';
+  return (
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Favicon */}
@@ -22,9 +18,8 @@ const IndexPage = () => (
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={metaImageUrl} />
-    </Head>
-    <Index />
-  </div>
-);
+    </>
+  );
+};
 
-export default IndexPage;
+export default Head;

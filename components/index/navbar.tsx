@@ -1,8 +1,8 @@
+'use client';
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-// const DarkModeSwitch = dynamic(() => import('./dark-mode-switch'), { ssr: false });
 import DarkModeSwitch from './dark-mode-switch';
 
 const Navbar = () => (

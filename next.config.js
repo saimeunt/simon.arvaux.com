@@ -2,9 +2,5 @@
 module.exports = {
   trailingSlash: false,
   reactStrictMode: true,
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
+  experimental: { appDir: true },
 };

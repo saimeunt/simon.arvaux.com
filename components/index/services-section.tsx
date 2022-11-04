@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const ServicesSection = () => (
   <section id="services" className="scroll-mt-24 bg-purple-800">

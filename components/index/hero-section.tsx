@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const HeroSection = () => (
   <section id="home" className="scroll-mt-24 lg:relative">

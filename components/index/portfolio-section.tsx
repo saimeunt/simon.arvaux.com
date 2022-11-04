@@ -1,5 +1,6 @@
+'use client';
 import { useState } from 'react';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import Lightbox from 'react-image-lightbox';
 
 const screenshots = [
