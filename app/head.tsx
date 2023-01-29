@@ -7,6 +7,7 @@ const Head = () => {
     <>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       {/* Favicon */}
       <link rel="icon" href="/img/favicon.png" sizes="128x128" type="image/png" />
       {/* Facebook meta */}

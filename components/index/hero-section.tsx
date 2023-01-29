@@ -65,7 +65,7 @@ const HeroSection = () => (
         src="/img/hero/hero.jpg"
         alt="Simon working at the office"
         priority
-        sizes="100vw"
+        sizes="(min-width: 1024px) 50vw, 100vw"
         fill
       />
     </div>
