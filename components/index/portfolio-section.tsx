@@ -1,7 +1,6 @@
 'use client';
-import { useState } from 'react';
 import Image from 'next/image';
-import Lightbox from 'react-image-lightbox';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 
 const screenshots = [
   {
@@ -22,17 +21,36 @@ const screenshots = [
   },
 ];
 
-const nextImageSrc = (url: string) => `/_next/image?url=${encodeURIComponent(url)}&w=3840&q=75`;
+const nextImageSrc = (url: string, width: number) =>
+  `/_next/image?url=${encodeURIComponent(url)}&w=${width}&q=75`;
 
-const PortfolioSection = () => {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
-  return (
-    <section id="portfolio" className="scroll-mt-24 bg-gray-200 dark:bg-neutral-900">
-      <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
-        <h2 className="pl-4 pb-12 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:pl-6 sm:text-4xl md:pl-0">
-          Check out my portfolio
-        </h2>
+const GalleryItem = ({ image }: { image: { title: string; source: string } }) => (
+  <Item
+    original={nextImageSrc(image.source, 1920)}
+    thumbnail={nextImageSrc(image.source, 640)}
+    caption={image.title}
+    width="1920"
+    height="1080"
+  >
+    {({ ref, open }) => (
+      <div
+        ref={ref as React.MutableRefObject<HTMLDivElement>}
+        className="aspect-w-16 aspect-h-9 relative w-full cursor-zoom-in overflow-hidden rounded-lg"
+        onClick={open}
+      >
+        <Image src={image.source} alt={image.title} sizes="(min-width: 1024px) 50vw, 100vw" fill />
+      </div>
+    )}
+  </Item>
+);
+
+const PortfolioSection = () => (
+  <section id="portfolio" className="scroll-mt-24 bg-gray-200 dark:bg-neutral-900">
+    <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
+      <h2 className="pl-4 pb-12 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:pl-6 sm:text-4xl md:pl-0">
+        Check out my portfolio
+      </h2>
+      <Gallery withCaption>
         <div className="max-w-3xl">
           <h2 className="font-semibold text-gray-500">
             Statically generated website using{' '}
@@ -63,21 +81,7 @@ const PortfolioSection = () => {
         </div>
         <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
           <div>
-            <div
-              className="aspect-video w-full cursor-zoom-in overflow-hidden rounded-lg"
-              onClick={() => {
-                setLightboxOpen(true);
-                setImageIndex(0);
-              }}
-            >
-              <Image
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
-                src={screenshots[0].source}
-                alt={screenshots[0].title}
-                width={1280}
-                height={720}
-              />
-            </div>
+            <GalleryItem image={screenshots[0]} />
             <p className="mt-8 text-base text-gray-500">
               The website is powered by{' '}
               <a
@@ -102,21 +106,7 @@ const PortfolioSection = () => {
             </p>
           </div>
           <div>
-            <div
-              className="aspect-video w-full cursor-zoom-in overflow-hidden"
-              onClick={() => {
-                setLightboxOpen(true);
-                setImageIndex(1);
-              }}
-            >
-              <Image
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
-                src={screenshots[1].source}
-                alt={screenshots[1].title}
-                width={1280}
-                height={720}
-              />
-            </div>
+            <GalleryItem image={screenshots[1]} />
             <p className="mt-8 text-base text-gray-500">
               The custom{' '}
               <a
@@ -174,7 +164,6 @@ const PortfolioSection = () => {
               height="315"
               src="https://www.youtube.com/embed/6LUYbWf8YbM"
               title="YouTube video player"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="aspect-video w-full rounded-lg"
@@ -205,21 +194,7 @@ const PortfolioSection = () => {
         </div>
         <div className="mt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-8">
           <div>
-            <div
-              className="aspect-video w-full cursor-zoom-in overflow-hidden rounded-lg"
-              onClick={() => {
-                setLightboxOpen(true);
-                setImageIndex(2);
-              }}
-            >
-              <Image
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
-                src={screenshots[2].source}
-                alt={screenshots[2].title}
-                width={1280}
-                height={720}
-              />
-            </div>
+            <GalleryItem image={screenshots[2]} />
             <p className="mt-8 text-base text-gray-500">
               The investor facing application displays the user portfolio along with the current
               investment opportunities he might be interested in. Built as a server-side rendered
@@ -228,21 +203,7 @@ const PortfolioSection = () => {
             </p>
           </div>
           <div>
-            <div
-              className="aspect-video w-full cursor-zoom-in overflow-hidden"
-              onClick={() => {
-                setLightboxOpen(true);
-                setImageIndex(3);
-              }}
-            >
-              <Image
-                className="pointer-events-none h-full w-full rounded-lg object-cover object-center"
-                src={screenshots[3].source}
-                alt={screenshots[3].title}
-                width={1280}
-                height={720}
-              />
-            </div>
+            <GalleryItem image={screenshots[3]} />
             <p className="mt-8 text-base text-gray-500">
               The club deal administrator back office is a white-label product customizable to suit
               different investment sectors. It consumes the same GraphQL API as the front office
@@ -250,24 +211,9 @@ const PortfolioSection = () => {
             </p>
           </div>
         </div>
-      </div>
-      {lightboxOpen && (
-        <Lightbox
-          mainSrc={nextImageSrc(screenshots[imageIndex].source)}
-          imageTitle={screenshots[imageIndex].title}
-          nextSrc={nextImageSrc(screenshots[(imageIndex + 1) % screenshots.length].source)}
-          prevSrc={nextImageSrc(
-            screenshots[(imageIndex + screenshots.length - 1) % screenshots.length].source,
-          )}
-          onCloseRequest={() => setLightboxOpen(false)}
-          onMovePrevRequest={() =>
-            setImageIndex((imageIndex + screenshots.length - 1) % screenshots.length)
-          }
-          onMoveNextRequest={() => setImageIndex((imageIndex + 1) % screenshots.length)}
-        />
-      )}
-    </section>
-  );
-};
+      </Gallery>
+    </div>
+  </section>
+);
 
 export default PortfolioSection;

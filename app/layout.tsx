@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { useDarkMode } from 'usehooks-ts';
 import classNames from 'classnames';
 import 'tailwindcss/tailwind.css';
-import 'react-image-lightbox/style.css';
+import 'photoswipe/dist/photoswipe.css';
 
 import '../styles.css';
 
