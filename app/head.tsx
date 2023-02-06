@@ -13,6 +13,7 @@ const Head = () => {
       <link rel="icon" href="/img/favicon.png" sizes="128x128" type="image/png" />
       {/* Facebook meta */}
       <meta property="og:url" content={metaUrl} />
+      <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={metaImageUrl} />
