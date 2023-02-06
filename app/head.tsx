@@ -1,8 +1,9 @@
 const Head = () => {
   const title = 'Simon Arvaux portfolio';
   const description = 'Full Stack Web3 Developer';
-  const metaImageUrl = 'https://simon.arvaux.com/img/meta-image.jpg';
-  // const metaImageUrl = 'https://simon.arvaux.com/api/meta-image';
+  const scheme = `http${process.env.NODE_ENV !== 'production' ? '' : 's'}`;
+  const metaUrl = `${scheme}://${process.env.VERCEL_URL}`;
+  const metaImageUrl = `${metaUrl}/api/meta-image`;
   return (
     <>
       <title>{title}</title>

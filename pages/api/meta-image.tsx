@@ -9,7 +9,7 @@ const handler = async () => {
   const fontData = await fontResponse.arrayBuffer();
   return new ImageResponse(
     (
-      <div tw="relative flex h-[628px] w-[1200px]">
+      <div tw="relative flex h-[630px] w-[1200px]">
         <div tw="absolute flex inset-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -30,10 +30,10 @@ const handler = async () => {
     ),
     {
       width: 1200,
-      height: 628,
+      height: 630,
       fonts: [
         {
-          name: 'Noto Sans',
+          name: 'NotoSans-ExtraBold',
           data: fontData,
           weight: 800,
           style: 'normal',
