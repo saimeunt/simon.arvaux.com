@@ -2,8 +2,7 @@ const Head = () => {
   const title = 'Simon Arvaux portfolio';
   const description = 'Full Stack Web3 Developer';
   const scheme = `http${process.env.NODE_ENV !== 'production' ? '' : 's'}`;
-  const metaUrl = `${scheme}://${process.env.VERCEL_URL}`;
-  const metaImageUrl = `${metaUrl}/api/meta-image`;
+  const metaImageUrl = `${scheme}://${process.env.VERCEL_URL}/api/meta-image`;
   return (
     <>
       <title>{title}</title>
@@ -12,7 +11,7 @@ const Head = () => {
       {/* Favicon */}
       <link rel="icon" href="/img/favicon.png" sizes="128x128" type="image/png" />
       {/* Facebook meta */}
-      <meta property="og:url" content={metaUrl} />
+      <meta property="og:url" content="https://simon.arvaux.com" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
