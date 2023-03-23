@@ -1,8 +1,10 @@
 import { ImageResponse } from '@vercel/og';
 
-export const config = { runtime: 'edge' };
+// export const config = { runtime: 'edge' };
 
-const handler = async () => {
+export const runtime = 'experimental-edge';
+
+export const GET = async () => {
   const fontResponse = await fetch(
     'https://github.com/google/fonts/blob/main/ofl/notosans/NotoSans-ExtraBold.ttf?raw=true',
   );
@@ -15,9 +17,7 @@ const handler = async () => {
           <img
             tw="h-full w-full"
             style={{ objectFit: 'cover', objectPosition: 'center' }}
-            // tw="h-full w-full object-cover object-center"
-            // src="http://localhost:3000/img/meta-image-background.jpg"
-            src={new URL('../../public/img/meta-image-background.jpg', import.meta.url).href}
+            src={new URL('../../../public/img/meta-image-background.jpg', import.meta.url).href}
             alt="Meta image"
           />
         </div>
@@ -42,5 +42,3 @@ const handler = async () => {
     },
   );
 };
-
-export default handler;
