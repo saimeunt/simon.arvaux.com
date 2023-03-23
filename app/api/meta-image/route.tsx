@@ -16,7 +16,8 @@ export const GET = async () => {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             tw="h-full w-full"
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            // style={{ objectFit: 'cover', objectPosition: 'center' }}
+            // tw="h-full w-full object-cover object-center"
             src={new URL('../../../public/img/meta-image-background.jpg', import.meta.url).href}
             alt="Meta image"
           />
