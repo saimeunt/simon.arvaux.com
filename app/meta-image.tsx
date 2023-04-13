@@ -20,7 +20,9 @@ const handler = async () => {
             tw="h-full w-full"
             // style={{ objectFit: 'cover', objectPosition: 'center' }}
             // tw="h-full w-full object-cover object-center"
-            src={backgroundUrl}
+            // src={backgroundUrl}
+            // src="https://simon-arvaux-com-saimeunt.vercel.app/img/meta-image-background.jpg"
+            src={new URL('../public/img/meta-image-background.jpg', import.meta.url).href}
             alt="Meta image background"
             width={size.width}
             height={size.height}
@@ -30,6 +32,10 @@ const handler = async () => {
         <div tw="relative mx-auto flex max-w-4xl flex-col items-center px-6 pt-80 text-center">
           <h1 tw="text-8xl font-extrabold tracking-tight text-white">Simon Arvaux</h1>
           <h2 tw="mt-4 text-6xl font-extrabold text-purple-300">Full Stack Web3 Developer</h2>
+          <h6 tw="text-xs text-white">{backgroundUrl}</h6>
+          <h6 tw="text-xs text-white">
+            {new URL('../public/img/meta-image-background.jpg', import.meta.url).href}
+          </h6>
         </div>
       </div>
     ),
