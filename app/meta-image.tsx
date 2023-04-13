@@ -21,7 +21,9 @@ const handler = async () => {
             // style={{ objectFit: 'cover', objectPosition: 'center' }}
             // tw="h-full w-full object-cover object-center"
             src={backgroundUrl}
-            alt="Meta image"
+            alt="Meta image background"
+            width={size.width}
+            height={size.height}
           />
         </div>
         <div tw="absolute flex inset-0 bg-neutral-900 opacity-50" />
