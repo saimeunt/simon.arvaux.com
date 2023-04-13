@@ -40,7 +40,7 @@ const Testimonial = ({
     <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
       <div className="relative text-lg font-medium text-white md:flex-grow">
         <svg
-          className="absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-purple-600"
+          className="absolute left-0 top-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-purple-600"
           fill="currentColor"
           viewBox="0 0 32 32"
           aria-hidden="true"
@@ -90,7 +90,7 @@ const Testimonial = ({
 const TestimonialsSection = () => (
   <section id="work" className="scroll-mt-24 bg-purple-800">
     <div className="mx-auto max-w-7xl py-12 md:px-6 md:py-16 lg:px-8">
-      <h2 className="pl-4 pb-12 text-3xl font-extrabold tracking-tight text-white sm:pl-6 sm:text-4xl md:pl-0">
+      <h2 className="pb-12 pl-4 text-3xl font-extrabold tracking-tight text-white sm:pl-6 sm:text-4xl md:pl-0">
         People I worked with
       </h2>
       <div className="md:grid md:grid-cols-2">
@@ -107,7 +107,7 @@ const TestimonialsSection = () => (
             position="Founder &amp; CEO"
           />
         </div>
-        <div className="border-b-2 border-purple-900 px-4 py-12 sm:px-6 md:border-t-0 md:border-l md:border-b md:pb-16 md:pt-0 md:pr-0 md:pl-10 lg:pl-16">
+        <div className="border-b-2 border-purple-900 px-4 py-12 sm:px-6 md:border-b md:border-l md:border-t-0 md:pb-16 md:pl-10 md:pr-0 md:pt-0 lg:pl-16">
           <Testimonial
             logoUrl="/img/testimonials/slite.png"
             companyName="Slite"
@@ -121,7 +121,7 @@ const TestimonialsSection = () => (
             position="Founder &amp; CEO"
           />
         </div>
-        <div className="border-b-2 border-purple-900 px-4 py-12 sm:px-6 md:flex md:flex-col md:border-t md:border-b-0 md:border-r md:pt-16 md:pb-0 md:pl-0 md:pr-10 lg:pr-16">
+        <div className="border-b-2 border-purple-900 px-4 py-12 sm:px-6 md:flex md:flex-col md:border-b-0 md:border-r md:border-t md:pb-0 md:pl-0 md:pr-10 md:pt-16 lg:pr-16">
           <Testimonial
             logoUrl="/img/testimonials/hivy.png"
             companyName="Hivy"
@@ -134,7 +134,7 @@ const TestimonialsSection = () => (
             position="Former Co-founder &amp; CEO"
           />
         </div>
-        <div className="border-purple-900 px-4 pt-12 sm:px-6 md:border-t md:border-l md:pt-16 md:pr-0 md:pl-10 lg:pl-16">
+        <div className="border-purple-900 px-4 pt-12 sm:px-6 md:border-l md:border-t md:pl-10 md:pr-0 md:pt-16 lg:pl-16">
           <Testimonial
             logoUrl="/img/testimonials/efounders.jpg"
             companyName="eFounders"

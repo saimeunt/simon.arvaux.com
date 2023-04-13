@@ -22,7 +22,7 @@ const ContactForm = () => {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const formRef = useRef<FormApi<FormValues, Partial<FormValues>> | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = async (formValues: FormValues) => {
+  const onSubmit = (formValues: FormValues) => {
     if (!recaptchaRef.current) {
       return;
     }
@@ -86,7 +86,7 @@ const ContactForm = () => {
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       required
                       value={input.value}
                       onChange={input.onChange}
@@ -116,7 +116,7 @@ const ContactForm = () => {
                       name="last-name"
                       id="last-name"
                       autoComplete="family-name"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       aria-describedby="last-name-optional"
                       value={input.value}
                       onChange={input.onChange}
@@ -141,7 +141,7 @@ const ContactForm = () => {
                       name="email"
                       type="email"
                       autoComplete="email"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       required
                       value={input.value}
                       onChange={input.onChange}
@@ -171,7 +171,7 @@ const ContactForm = () => {
                       name="phone"
                       id="phone"
                       autoComplete="tel"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       aria-describedby="phone-optional"
                       value={input.value}
                       onChange={input.onChange}
@@ -195,7 +195,7 @@ const ContactForm = () => {
                       type="text"
                       name="subject"
                       id="subject"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       required
                       value={input.value}
                       onChange={input.onChange}
@@ -226,7 +226,7 @@ const ContactForm = () => {
                       id="message"
                       name="message"
                       rows={4}
-                      className="block w-full rounded-md border border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
+                      className="block w-full rounded-md border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-white dark:bg-neutral-800 dark:text-white"
                       aria-describedby="message-max"
                       maxLength={500}
                       required
@@ -282,12 +282,12 @@ const ContactForm = () => {
 
 const ContactSection = () => (
   <section id="contact" className="scroll-mt-24 bg-gray-100 dark:bg-neutral-900">
-    <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div className="relative bg-white shadow-xl dark:bg-neutral-800">
         <h2 className="sr-only">Contact me</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Contact information */}
-          <div className="relative overflow-hidden bg-purple-700 py-10 px-6 sm:px-10 xl:p-12">
+          <div className="relative overflow-hidden bg-purple-700 px-6 py-10 sm:px-10 xl:p-12">
             <h3 className="text-lg font-medium text-white">Contact information</h3>
             <p className="mt-6 max-w-3xl text-base text-purple-50">
               Have a project in mind?
@@ -338,7 +338,7 @@ const ContactSection = () => (
               </a>
             </dl>
           </div>
-          <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
+          <div className="px-6 py-10 sm:px-10 lg:col-span-2 xl:p-12">
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">Send me a message</h3>
             <ContactForm />
           </div>

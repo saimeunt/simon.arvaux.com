@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const ServicesSection = () => (
   <section id="services" className="scroll-mt-24 bg-purple-800">
-    <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-8">
         <div>
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">What can I do for you?</h2>
@@ -25,7 +25,7 @@ const ServicesSection = () => (
           </div>
         </div>
         <div className="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"
@@ -36,7 +36,7 @@ const ServicesSection = () => (
               />
             </a>
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"
@@ -47,7 +47,7 @@ const ServicesSection = () => (
               />
             </a>
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"
@@ -58,7 +58,7 @@ const ServicesSection = () => (
               />
             </a>
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://graphql.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"
@@ -69,7 +69,7 @@ const ServicesSection = () => (
               />
             </a>
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"
@@ -80,7 +80,7 @@ const ServicesSection = () => (
               />
             </a>
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+          <div className="col-span-1 flex justify-center bg-gray-50 px-8 py-8">
             <a href="https://soliditylang.org/" target="_blank" rel="noreferrer">
               <Image
                 // className="max-h-12"

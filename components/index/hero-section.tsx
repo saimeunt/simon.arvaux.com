@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const HeroSection = () => (
   <section id="home" className="scroll-mt-24 lg:relative">
-    <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-24 lg:text-left">
+    <div className="mx-auto w-full max-w-7xl pb-20 pt-16 text-center lg:py-24 lg:text-left">
       <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
         <Image
           className="inline-block rounded-full"
@@ -51,7 +51,7 @@ const HeroSection = () => (
           <div className="rounded-md shadow">
             <a
               href="#contact"
-              className="flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-8 py-3 text-base font-medium text-white hover:bg-purple-700 md:py-4 md:px-10 md:text-lg"
+              className="flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-8 py-3 text-base font-medium text-white hover:bg-purple-700 md:px-10 md:py-4 md:text-lg"
             >
               Contact me
             </a>

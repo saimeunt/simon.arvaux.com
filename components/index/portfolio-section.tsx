@@ -35,7 +35,7 @@ const GalleryItem = ({ image }: { image: { title: string; source: string } }) =>
     {({ ref, open }) => (
       <div
         ref={ref as React.MutableRefObject<HTMLDivElement>}
-        className="aspect-w-16 aspect-h-9 relative w-full cursor-zoom-in overflow-hidden rounded-lg"
+        className="aspect-h-9 aspect-w-16 relative w-full cursor-zoom-in overflow-hidden rounded-lg"
         onClick={open}
       >
         <Image src={image.source} alt={image.title} sizes="(min-width: 1024px) 50vw, 100vw" fill />
@@ -47,7 +47,7 @@ const GalleryItem = ({ image }: { image: { title: string; source: string } }) =>
 const PortfolioSection = () => (
   <section id="portfolio" className="scroll-mt-24 bg-gray-200 dark:bg-neutral-900">
     <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
-      <h2 className="pl-4 pb-12 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:pl-6 sm:text-4xl md:pl-0">
+      <h2 className="pb-12 pl-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:pl-6 sm:text-4xl md:pl-0">
         Check out my portfolio
       </h2>
       <Gallery withCaption>

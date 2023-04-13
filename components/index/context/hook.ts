@@ -10,7 +10,7 @@ const Hook = () => {
   };
   const closeNotification = (): void => dispatch({ type: 'CLOSE_NOTIFICATION' });
   return {
-    ...state,
+    state,
     openNotification,
     closeNotification,
   };

@@ -7,7 +7,10 @@ import { XMarkIcon } from '@heroicons/react/20/solid';
 import useContext from './context/hook';
 
 const Notification = () => {
-  const { notificationOpen, notificationSuccess, closeNotification } = useContext();
+  const {
+    state: { notificationOpen, notificationSuccess },
+    closeNotification,
+  } = useContext();
   return (
     <div
       aria-live="assertive"

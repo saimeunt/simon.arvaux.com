@@ -64,7 +64,7 @@ const Navbar = () => (
         className="absolute inset-x-0 top-0 z-30 origin-top-right transform p-2 transition md:hidden"
       >
         <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:divide-neutral-700 dark:bg-neutral-800">
-          <div className="px-5 pt-5 pb-6">
+          <div className="px-5 pb-6 pt-5">
             <div className="flex items-center justify-between">
               <a href="#home">
                 <span className="sr-only">Man Technologist Emoji</span>
@@ -78,7 +78,7 @@ const Navbar = () => (
               </div>
             </div>
           </div>
-          <div className="py-6 px-5">
+          <div className="px-5 py-6">
             <div className="grid grid-cols-4 gap-4">
               <a
                 href="#services"

@@ -7,20 +7,19 @@ import '../styles.css';
 const title = 'Simon Arvaux portfolio';
 const description = 'Full Stack Web3 Developer';
 const scheme = `http${process.env.NODE_ENV !== 'production' ? '' : 's'}`;
-const metaImageUrl = `${scheme}://${process.env.VERCEL_URL}/api/meta-image`;
+const metadataBase = `${scheme}://${process.env.VERCEL_URL}`;
 
 export const metadata = {
+  metadataBase: new URL(metadataBase),
   title,
   description,
-  icons: { icon: { url: '/img/favicon.png', sizes: '128x128', type: 'image/png' } },
   openGraph: {
     title,
     description,
     url: 'https://simon.arvaux.com',
     type: 'website',
-    images: [metaImageUrl],
   },
-  twitter: { card: 'summary_large_image', title, description, images: [metaImageUrl] },
+  twitter: { card: 'summary_large_image', title, description },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
