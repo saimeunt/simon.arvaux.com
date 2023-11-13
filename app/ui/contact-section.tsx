@@ -39,6 +39,7 @@ const ContactForm = () => {
         openNotification(true);
         recaptchaRef.current?.reset();
         formRef.current?.reset();
+        setMessage('');
       } catch (error) {
         console.log(error);
         openNotification(false);
