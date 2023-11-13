@@ -2,24 +2,22 @@ import { ReactNode } from 'react';
 import 'tailwindcss/tailwind.css';
 import 'photoswipe/dist/photoswipe.css';
 
-import '../styles.css';
+import '@/app/ui/global.css';
 
 const title = 'Simon Arvaux portfolio';
 const description = 'Full Stack Web3 Developer';
-const scheme = `http${process.env.NODE_ENV !== 'production' ? '' : 's'}`;
-const metadataBase = `${scheme}://${process.env.VERCEL_URL}`;
 
 export const metadata = {
-  metadataBase: new URL(metadataBase),
   title,
   description,
   openGraph: {
     title,
     description,
-    url: 'https://simon.arvaux.com',
+    url: process.env.URL,
     type: 'website',
   },
   twitter: { card: 'summary_large_image', title, description },
+  metadataBase: new URL(process.env.URL),
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => (

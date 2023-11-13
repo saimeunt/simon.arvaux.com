@@ -1,8 +1,8 @@
 'use client';
 import { ReactNode, useReducer } from 'react';
 
-import Context from '.';
-import { defaultState, reducer } from './reducer';
+import Context from '@/app/ui/context';
+import { defaultState, reducer } from '@/app/ui/context/reducer';
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, defaultState());

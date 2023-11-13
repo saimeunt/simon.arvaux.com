@@ -1,1 +1,1 @@
-export { default, size, alt, contentType } from './meta-image';
+export { default, size, alt, contentType } from '@/app/meta-image';

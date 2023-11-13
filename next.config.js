@@ -2,5 +2,4 @@
 module.exports = {
   trailingSlash: false,
   reactStrictMode: true,
-  experimental: { appDir: true, serverComponentsExternalPackages: ['mjml'] },
 };

@@ -1,7 +1,5 @@
 .next
+.vscode
 node_modules
 .env.local
 .DS_Store
-npm-debug.log
-yarn-error.log
-.vscode

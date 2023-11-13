@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { defaultState, Action } from './reducer';
+import { defaultState, Action } from '@/app/ui/context/reducer';
 
 export default createContext({
   state: defaultState(),

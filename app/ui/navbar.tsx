@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import DarkModeSwitch from './dark-mode-switch';
+import DarkModeSwitch from '@/app/ui/dark-mode-switch';
 
 const Navbar = () => (
   <Popover className="relative bg-white/80 shadow backdrop-blur dark:bg-neutral-900/80">

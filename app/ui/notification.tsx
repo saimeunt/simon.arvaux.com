@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
-import useContext from './context/hook';
+import useContext from '@/app/ui/context/hook';
 
 const Notification = () => {
   const {

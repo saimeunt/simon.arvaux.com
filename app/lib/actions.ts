@@ -1,5 +1,9 @@
-import mjml2html from 'mjml';
+'use server';
+// import mjml2html from 'mjml';
 import { htmlToText } from 'html-to-text';
+import { z } from 'zod';
+
+import template from '@/app/lib/template';
 
 const siteVerify = async (captcha: string) => {
   const apiUrl = 'https://www.google.com/recaptcha/api/siteverify';
@@ -54,23 +58,55 @@ const sendEmail = async (email: string, name: string, subject: string, htmlPart:
   });
 };
 
-export const POST = async (req: Request) => {
+const MessageSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string().email(),
+  phone: z.string(),
+  subject: z.string(),
+  message: z.string(),
+  captcha: z.string(),
+});
+
+// This is temporary until @types/react-dom is updated
+/* type State = {
+  errors?: {
+    firstName?: string[];
+    lastName?: string[];
+    email?: string[];
+    phone?: string[];
+    subject?: string[];
+    message?: string[];
+    // captcha?: string[];
+  };
+  status: string;
+}; */
+
+export const sendMessage = async (/* prevState: State, */ formData: FormData) => {
+  const validatedFields = MessageSchema.safeParse({
+    firstName: formData.get('first-name'),
+    lastName: formData.get('last-name'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
+    subject: formData.get('subject'),
+    message: formData.get('message'),
+    captcha: formData.get('captcha'),
+  });
+  if (!validatedFields.success) {
+    throw new Error('error');
+    /* return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      status: 'error',
+    }; */
+  }
+  const { firstName, lastName, email, phone, subject, message, captcha } = validatedFields.data;
   try {
-    const body = await req.json();
-    const { firstName, lastName, email, phone, subject, message, captcha } = body as {
-      firstName: string;
-      lastName: string;
-      email: string;
-      phone: string;
-      subject: string;
-      message: string;
-      captcha: string;
-    };
     const success = await siteVerify(captcha);
     if (!success) {
-      return new Response(null, { status: 500 });
+      throw new Error('error');
+      // return { status: 'error' };
     }
-    const { html: htmlPart } = mjml2html(`
+    /* const { html: htmlPart } = mjml2html(`
       <mjml>
         <mj-body>
           <mj-section>
@@ -82,16 +118,21 @@ export const POST = async (req: Request) => {
           </mj-section>
         </mj-body>
       </mjml>
-    `);
-    const { ok, status } = await sendEmail(
+    `); */
+    const htmlPart = template.replace('{{message}}', message.replaceAll('\n', '<br />'));
+    const { ok } = await sendEmail(
       email,
       `${firstName} ${lastName} <${email}> ${phone ? `(${phone})` : ''}`.trim(),
       subject,
       htmlPart,
     );
-    return new Response(null, { status: ok ? 201 : status });
+    if (!ok) {
+      throw new Error('error');
+    }
+    // return { status: ok ? 'success' : 'error' };
   } catch (error) {
     console.error(error);
-    return new Response(null, { status: 500 });
+    throw new Error('error');
+    // return { status: 'error' };
   }
 };

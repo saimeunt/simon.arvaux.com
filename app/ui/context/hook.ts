@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import Context from '.';
+import Context from '@/app/ui/context';
 
 const Hook = () => {
   const { state, dispatch } = useContext(Context);

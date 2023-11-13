@@ -1,6 +1,6 @@
 # Run in dev
 
-`yarn dev`
+`pnpm dev`
 
 # Deploy
 
