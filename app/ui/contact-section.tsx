@@ -1,7 +1,6 @@
 'use client';
 import { useRef, useTransition, useState } from 'react';
 // import { useFormStatus, useFormState } from 'react-dom';
-import clsx from 'clsx';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -13,13 +12,7 @@ const Submit = ({ pending }: { pending: boolean }) => {
   return (
     <button
       type="submit"
-      className={clsx(
-        {
-          'bg-purple-300': pending,
-          'bg-purple-600 hover:bg-purple-700': !pending,
-        },
-        'mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto',
-      )}
+      className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto disabled:opacity-60"
       disabled={pending}
     >
       {pending ? 'Sending…' : 'Submit'}
