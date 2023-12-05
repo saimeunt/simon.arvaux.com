@@ -8,8 +8,7 @@ declare global {
       readonly VERCEL_URL: string;
       // private
       readonly URL: string;
-      readonly MAILJET_API_KEY: string;
-      readonly MAILJET_API_SECRET: string;
+      readonly RESEND_API_KEY: string;
       readonly RECAPTCHA_SECRET_KEY: string;
       // public
       readonly NEXT_PUBLIC_RECAPTCHA_SITE_KEY: string;

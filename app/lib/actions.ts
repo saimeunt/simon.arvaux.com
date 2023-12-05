@@ -1,61 +1,47 @@
 'use server';
-// import mjml2html from 'mjml';
-import { htmlToText } from 'html-to-text';
+import { Resend } from 'resend';
 import { z } from 'zod';
 
+// import Email from '@/app/lib/email';
 import template from '@/app/lib/template';
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const siteVerify = async (captcha: string) => {
-  const apiUrl = 'https://www.google.com/recaptcha/api/siteverify';
-  const response = await fetch(
-    `${apiUrl}?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      },
-      method: 'POST',
+  const apiUrl = new URL('https://www.google.com/recaptcha/api/siteverify');
+  apiUrl.searchParams.append('secret', process.env.RECAPTCHA_SECRET_KEY);
+  apiUrl.searchParams.append('response', captcha);
+  const response = await fetch(apiUrl, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
     },
-  );
+    method: 'POST',
+  });
   const responseJson = await response.json();
   const { success } = responseJson as { success: boolean };
   return success;
 };
 
-const sendEmail = async (email: string, name: string, subject: string, htmlPart: string) => {
+const sendEmail = async (replyTo: string, subject: string, message: string) => {
+  const htmlPart = template.replace('{{message}}', message.replaceAll('\n', '<br />'));
   const payload = {
-    Messages: [
-      {
-        From: {
-          Email: 'simon@arvaux.com',
-          Name: name,
-        },
-        To: [{ Email: 'simon@arvaux.com' }],
-        ReplyTo: {
-          Email: email,
-          Name: name,
-        },
-        Subject: subject,
-        HTMLPart: htmlPart,
-        TextPart: htmlToText(htmlPart),
-      },
-    ],
+    from: 'Simon Arvaux <simon@arvaux.com>',
+    to: 'Simon Arvaux <simon@arvaux.com>',
+    reply_to: replyTo,
+    subject,
+    // react: Email({ message }),
+    html: htmlPart,
   };
   if (process.env.NODE_ENV !== 'production') {
     console.info('======== BEGIN MAIL ========');
-    console.info(payload.Messages);
+    console.info(payload);
     console.info('========= END MAIL =========');
-    return new Response(null, { status: 200 });
+    return {
+      data: { id: '' },
+      error: null,
+    };
   }
-  return fetch('https://api.mailjet.com/v3.1/send', {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${Buffer.from(
-        `${process.env.MAILJET_API_KEY}:${process.env.MAILJET_API_SECRET}`,
-      ).toString('base64')}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+  return resend.emails.send(payload);
 };
 
 const MessageSchema = z.object({
@@ -106,27 +92,12 @@ export const sendMessage = async (/* prevState: State, */ formData: FormData) =>
       throw new Error('error');
       // return { status: 'error' };
     }
-    /* const { html: htmlPart } = mjml2html(`
-      <mjml>
-        <mj-body>
-          <mj-section>
-            <mj-column>
-              <mj-text font-size="20px">
-                ${message.replaceAll('\n', '<br />')}
-              </mj-text>
-            </mj-column>
-          </mj-section>
-        </mj-body>
-      </mjml>
-    `); */
-    const htmlPart = template.replace('{{message}}', message.replaceAll('\n', '<br />'));
-    const { ok } = await sendEmail(
-      email,
+    const { error } = await sendEmail(
       `${firstName} ${lastName} <${email}> ${phone ? `(${phone})` : ''}`.trim(),
       subject,
-      htmlPart,
+      message,
     );
-    if (!ok) {
+    if (error) {
       throw new Error('error');
     }
     // return { status: ok ? 'success' : 'error' };
