@@ -34,7 +34,7 @@ const GalleryItem = ({ image }: { image: { title: string; source: string } }) =>
   >
     {({ ref, open }) => (
       <div
-        ref={ref as React.MutableRefObject<HTMLDivElement>}
+        ref={ref}
         className="aspect-h-9 aspect-w-16 relative w-full cursor-zoom-in overflow-hidden rounded-lg"
         onClick={open}
       >

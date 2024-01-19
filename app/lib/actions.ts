@@ -2,8 +2,7 @@
 import { Resend } from 'resend';
 import { z } from 'zod';
 
-// import Email from '@/app/lib/email';
-import template from '@/app/lib/template';
+import Email from '@/app/lib/email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -23,14 +22,12 @@ const siteVerify = async (captcha: string) => {
 };
 
 const sendEmail = async (replyTo: string, subject: string, message: string) => {
-  const htmlPart = template.replace('{{message}}', message.replaceAll('\n', '<br />'));
   const payload = {
     from: 'Simon Arvaux <simon@arvaux.com>',
     to: 'Simon Arvaux <simon@arvaux.com>',
     reply_to: replyTo,
     subject,
-    // react: Email({ message }),
-    html: htmlPart,
+    react: Email({ message }),
   };
   if (process.env.NODE_ENV !== 'production') {
     console.info('======== BEGIN MAIL ========');
