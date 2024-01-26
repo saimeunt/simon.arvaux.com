@@ -26,6 +26,20 @@ const MetaImage = () => (
   </div>
 );
 
-const handler = () => new ImageResponse(<MetaImage />, size);
+const handler = async () => {
+  const fontResponse = await fetch(`${process.env.URL}/fonts/NotoSans-ExtraBold.ttf`);
+  const fontData = await fontResponse.arrayBuffer();
+  return new ImageResponse(<MetaImage />, {
+    ...size,
+    fonts: [
+      {
+        name: 'NotoSans-ExtraBold',
+        data: fontData,
+        weight: 800,
+        style: 'normal',
+      },
+    ],
+  });
+};
 
 export default handler;
