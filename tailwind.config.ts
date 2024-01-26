@@ -1,4 +1,4 @@
-import { Config } from 'tailwindcss';
+import { type Config } from 'tailwindcss';
 import aspectRatioPlugin from '@tailwindcss/aspect-ratio';
 import formsPlugin from '@tailwindcss/forms';
 

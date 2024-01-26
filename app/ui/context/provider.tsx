@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode, useReducer } from 'react';
+import { type ReactNode, useReducer } from 'react';
 
 import Context from '@/app/ui/context';
 import { defaultState, reducer } from '@/app/ui/context/reducer';

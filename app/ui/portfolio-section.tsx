@@ -2,7 +2,9 @@
 import Image from 'next/image';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 
-const screenshots = [
+type Screenshot = { title: string; source: string };
+
+const screenshots: [Screenshot, Screenshot, Screenshot, Screenshot] = [
   {
     title: 'eFounders website screenshot',
     source: '/img/portfolio/efounders1.jpg',

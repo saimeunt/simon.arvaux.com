@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'tailwindcss/tailwind.css';
 import 'photoswipe/dist/photoswipe.css';
