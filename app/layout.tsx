@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'tailwindcss/tailwind.css';
 import 'photoswipe/dist/photoswipe.css';
@@ -25,6 +26,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang="en" className="scroll-smooth" style={{ scrollBehavior: 'smooth' }}>
     <body>
       {children}
+      <Analytics />
       <SpeedInsights />
     </body>
   </html>
